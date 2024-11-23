@@ -1,0 +1,38 @@
+<!-- Assignment 3 -->
+<h2>3rd Assignment</h2>
+<a href="https://www.google.co.in/" target=" blank">Click me to go google</a>
+<h4>Maps</h4> <iframe src=" https://www.google.com/maps/embed?pb= ! 1m 18 ! 1m 12 ! 1m3 ! 10193.737889416778!2d88.4539191
+ 
+referrerpolicy="no-referrer-when-downgrade"></iframe> <h4>Another website</h4>
+<iframe src="index.html"  width="450"></iframe> <h4> top</h4>
+<iframe src="one.html"  width="450"></iframe>
+<a href="ayanmisra2003@gmail.com">Click to mail me</a>
+<!-- Assignment 4 -->
+<h2>4th assignment (Nested Table)</h2>
+<table border="2px" style="table-layout: fixed;height: 300px;width:300px">
+<tr>
+<td>l</td>
+<td rowspan="2">1</td>
+<td colspan="2" rowspan="2">
+<center>
+<table border="2px" height="100px" width=" 
+<td>l</td>
+<td rowspan="2">1</td>
+</tr>
+<td>l</td>
+</tr>
+</table>
+</center>
+</tr>
+<tr>
+<td>l</td>
+<td 
+<td rowspan="3">1</td>
+<td>l</td>
+</tr>
+<td>l</td>
+<td rowspan="2">1</td>
+<td rowspan="2">1</td>
+<td>l</td>
+</tr>
+</table>
