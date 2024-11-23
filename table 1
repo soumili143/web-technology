@@ -1,0 +1,14 @@
+<!-- Assignment 1 -->
+<h2>1st assignment</h2>
+<table   width="200px" height="200px">
+<tr>
+<td>l</td> <td>l</td>
+</tr>
+<td rowspan="2">1</td>
+<td>l</td>
+</tr>
+<td>l</td>
+</tr>
+<td colspan="2">1</td>
+</tr>
+</table>
