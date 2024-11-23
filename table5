@@ -1,0 +1,15 @@
+<!-- Assignment 5 -->
+<h2>5th Assignment</h2>
+<table border="2px" style="table-layout: fixed;height: 500px;width:500px">
+<tr>
+<td>
+<iframe src="index.html" height="100%" width="100%"></iframe>
+<td>
+<iframe name="frl"
+ width:" 100%" height:" 100%" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<td colspan="2">
+<iframe src="one.html" height="100%" width="100%"></iframe>
+</tr>
+</table>
+</html>
+Output:
