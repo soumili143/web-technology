@@ -1,0 +1,165 @@
+<!—CRUD APP --!> 
+Database Connection: 
+<?php global $conn;  $server = "localhost"; 
+ $user = "root"; 
+ $password = "";  $db = "college"; 
+ $conn = mysqli_connect($server, $user, $password, 
+$db); ?> 
+Login: 
+<?php include 'db.php'; global $conn; if(isset($_POST['submit'])){     $email = $_POST['email']; 
+    $password = $_POST['password'];     $q = "SELECT * FROM `user` where email='$email' 
+and password='$password'";     $result = mysqli_query($conn, $q);     if(mysqli_num_rows($result) > 0){         $data = mysqli_fetch_assoc($result);         session_start(); 
+        $_SESSION['email'] = $data['email']; 
+        $_SESSION['password'] = $data['password']; 
+        $_SESSION['id'] = $data['id']; 
+        $_SESSION['name'] = $data['name'];         $_SESSION['phone'] = $data['phone']; 
+        echo "<script>alert('Login 
+Successfull');window.location.href='home.php';</scrip t>"; 
+    } 
+    else{ 
+        echo "<script>alert('Login Failed');</script>"; 
+    } 
+} 
+ 
+?> 
+<html> 
+    <head> 
+        <title> 
+            Login 
+        </title> 
+    </head>     <style> 
+        h2{ 
+            margin-top: 50px; 
+        } 
+        form {             margin-top: 30px;             display: flex;             flex-direction: column;             align-items: center; 
+            gap:20px; 
+        } 
+        form input{             height: 40px; 
+            width: 300px; 
+        } 
+    </style> 
+<body> 
+<center> 
+    <h2>Login Form</h2> 
+    <form action="" method="post"> 
+        <input type="email" placeholder="Enter Email" name="email" required> 
+        <input type="password" placeholder="Enter 
+Password" name="password" required>         <input type="submit" value="Login" 
+name="submit"> 
+    </form> 
+</center> 
+</body> </html> 
+ 
+Dashboard: 
+<?php include 'db.php'; session_start(); ?> 
+<html> 
+<head> 
+    <title> 
+        Home 
+    </title> 
+</head> <style>     h2{ 
+        margin-top: 50px; 
+    } 
+    table {         width: 800px; 
+        table-layout: fixed; 
+    } 
+</style> 
+<body> 
+<center> 
+    <h2>Dashboard</h2> 
+    <a href="add_product.php">Add Product</a> 
+    <a href="logout.php">Logout</a> 
+    <table border="1px"> 
+        <tr> 
+            <th>Product Name</th> 
+            <th>Price</th> 
+            <th>Category</th> 
+            <th>Quantity</th> 
+            <th>Action</th> 
+        </tr>         <?php         global $conn; 
+        $q = "SELECT * FROM `product`";         $result = mysqli_query($conn, $q);         if (mysqli_num_rows($result) > 0) { 
+            while($row = mysqli_fetch_assoc($result)) {                 echo "<tr>"; 
+                echo "<td>" . $row['productName'] . "</td>";                 echo "<td>" . $row['price'] . "</td>";                 echo "<td>" . $row['category'] . "</td>";                 echo "<td>" . $row['quantity'] . "</td>";                 echo "<td><a 
+href='update.php?id={$row['id']}'>Edit</a> <a 
+href='delete.php?id={$row['id']}'>Delete</a></td>"; 
+                echo "</tr>"; 
+            } 
+        } 
+        ?> 
+    </table> 
+</center> 
+</body> </html> 
+ 
+update: 
+<?php 
+session_start(); include 'db.php'; global $conn; $id = $_GET['id']; if(isset($_POST['submit'])){     $pname = $_POST['pname']; 
+    $quantity = $_POST['qt']; 
+    $price = $_POST['price']; 
+    $category = $_POST['category']; 
+    $q = "UPDATE product set productName='$pname', 
+quantity='$quantity', price='$price', category='$category' where id='$id'";     $result = mysqli_query($conn, $q);     if($result){ 
+        echo "<script>alert('Update 
+Successfull');window.location.href='home.php';</scrip t>"; 
+    } 
+    else{ 
+        echo "<script>alert('Update 
+Failed');window.location.href='add_product.php';</sc
+ript>"; 
+    } 
+} 
+$query = "SELECT * FROM product where id=$id"; 
+$result = mysqli_query($conn, $query); 
+$row = mysqli_fetch_assoc($result); 
+?> 
+<html> 
+<head> 
+    <title> 
+        Add User 
+    </title> 
+</head> <style> 
+    h2{ 
+        margin-top: 50px; 
+    } 
+    form {         margin-top: 30px;         display: flex;         flex-direction: column;         align-items: center; 
+        gap:20px; 
+    } 
+    form input{         height: 40px; 
+        width: 300px; 
+    } 
+</style> 
+<body> 
+<center> 
+    <h2>Edit Product</h2> 
+    <form action="" method="post"> 
+        <input type="text" placeholder="Enter Product 
+Name" name="pname" value="<?php echo 
+$row['productName'] ?>" required> 
+        <input type="number" placeholder="Enter Price" name="price" value="<?php echo $row['price'] ?>" required> 
+        <input type="text" placeholder="Enter Category" name="category" value="<?php echo $row['category'] 
+?>" required> 
+        <input type="number" placeholder="Enter 
+Quantity" name="qt" value="<?php echo 
+$row['quantity'] ?>" required>         <input type="submit" value="Update" 
+name="submit"> 
+    </form> 
+</center> 
+</body> </html> 
+ 
+Delete: 
+<?php 
+session_start(); include 'db.php'; global $conn; $id = $_GET['id']; 
+$q = "DELETE FROM product WHERE id=$id"; $result = mysqli_query($conn, $q); if($result){ 
+    echo "<script>alert('deleted 
+Successfully');window.location.href='home.php';</scri
+ 
+pt>"; 
+} 
+else{ 
+    echo "<script>alert('Failed');window.location.href='home.php';</script>"; 
+} 
+?> 
+Logout: 
+<?php 
+session_start(); session_destroy(); 
+header("location:index.php"); ?> 
+ 
